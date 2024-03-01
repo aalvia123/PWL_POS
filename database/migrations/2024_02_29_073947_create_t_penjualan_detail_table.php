@@ -22,7 +22,7 @@ return new class extends Migration
 
                 // Mendefinisikan Foreign Key pada kolom level_id mengacu pada kolom level_id di tabel m_level
                 $table->foreign('barang_id')->references('barang_id')->on('m_barang');
-                $table->foreign('user_id')->references('user_id')->on('m_user');
+                $table->foreign('penjualan_id')->references('penjualan_id')->on('t_penjualan');
             });
         }
     }
