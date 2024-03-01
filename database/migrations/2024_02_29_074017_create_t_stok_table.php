@@ -11,9 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('t_stok', function (Blueprint $table) {
-            //
-        });
+        if (!Schema::hasTable('t_stok')) {
+            Schema::create('t_stok', function (Blueprint $table) {
+                $table->id('stok_id');
+                $table->unsignedBigInteger('barang_id')->index(); // indexing untuk Foreignkey
+                $table->unsignedBigInteger('user_id')->index();
+                $table->dateTime('stok_tanggal');
+                $table->integer('stok_jumlah');
+                $table->timestamps();
+
+                // Mendefinisikan Foreign Key pada kolom level_id mengacu pada kolom level_id di tabel m_level
+                $table->foreign('barang_id')->references('barang_id')->on('m_barang');
+                $table->foreign('user_id')->references('user_id')->on('m_user');
+            });
+        }
     }
 
     /**
@@ -21,8 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('t_stok', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('t_stok');
     }
 };

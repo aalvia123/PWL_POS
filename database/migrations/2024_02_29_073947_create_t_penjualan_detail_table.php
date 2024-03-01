@@ -11,9 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('t_penjualan_detail', function (Blueprint $table) {
-            //
-        });
+        if (!Schema::hasTable('t_penjualan_detail')) {
+            Schema::create('t_penjualan_detail', function (Blueprint $table) {
+                $table->id('detail_id');
+                $table->unsignedBigInteger('penjualan_id')->index(); // indexing untuk Foreignkey
+                $table->unsignedBigInteger('barang_id')->index();
+                $table->integer('harga');
+                $table->integer('jumlah');
+                $table->timestamps();
+
+                // Mendefinisikan Foreign Key pada kolom level_id mengacu pada kolom level_id di tabel m_level
+                $table->foreign('barang_id')->references('barang_id')->on('m_barang');
+                $table->foreign('user_id')->references('user_id')->on('m_user');
+            });
+        }
     }
 
     /**
@@ -21,8 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('t_penjualan_detail', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('t_penjualan_detail');
     }
 };
