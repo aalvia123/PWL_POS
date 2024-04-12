@@ -1,35 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('adminlte::page')
+@section('title', 'Dashboard')
+@section('content_header')
+    <h1>Tambah User</h1>
+@stop
+@section('content')
+<div class="card card-success">
+    <div class="card-header">
+      <h3 class="card-title">Form Tambah User</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" name="username" placeholder="Masukan Username">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label>Nama</label>
+              <input type="text" name="nama" placeholder="Masukan Nama" >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <!-- textarea -->
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" name="password" placeholder="Password" >
+              </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+                <label>ID Level</label>
+                <select name="level_id">
+                  <option>Level 1</option>
+                  <option>Level 2</option>
+                  <option>Level 3</option>
+                  <option>Level 4</option>
+                  <option>Level 5</option>
+                </select>
+              </div>
+          </div>
+        </div>
+        <button type = "submit" class ="btn btn-success" value="simpan">Submit </button>
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tambah User</title>
-</head>
+@stop
 
-<body>
-    <h1>Form Tambah Data User</h1>
-    <form method="post" action="/user/tambah_simpan">
+@section('css')
+    {{-- Add here extra stylesheets --}}
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+@stop
 
-        {{ csrf_field() }}
-
-        <label>Username</label>
-        <input type="text" name="username" placeholder="Masukan Username">
-        <br>
-        <label>Nama</label>
-        <input type="text" name="nama" placeholder="Masukan Nama">
-        <br>
-        <label>Password</label>
-        <input type="text" name="password" placeholder="Masukan Password">
-        <br>
-        <label>Level ID</label>
-        <input type="number" name="level_id" placeholder="Masukan ID Level">
-        <br><br>
-        <input type="submit" class="btn btn-succes" value="Simpan">
-
-
-    </form>
-</body>
-
-</html>
+@section('js')
+    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+@stop

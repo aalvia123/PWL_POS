@@ -3,6 +3,7 @@
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\POSController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,12 +31,19 @@ Route::get('/user/tambah', function () {
     return view('user_tambah');
 });
 
+Route::get('/level/tambah', function () {
+    return view('level_tambah');
+});
+
 Route::get('/hello', function () {
     return 'Hello World';
    });
 
 
 Route::get('/level', [LevelController::class, 'index']);
+Route::post('/level/tambah_simpan', [UserController::class, 'tambah_simpan']);
+
+
 Route::get('/user', [UserController::class, 'index']);
 // Route::get('/user/tambah', [UserController::class, 'tambah']);
 Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan']);
@@ -50,4 +58,7 @@ Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.s
 Route::get('/kategori/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::put('/kategori/update_simpan/{id}', [KategoriController::class, 'update_simpan'])->name('kategori.update_simpan');
 Route::delete('/kategori/delete/{id}', [KategoriController::class, 'delete'])->name('kategori.delete');
+
+Route::resources(['m_user' => POSController::class,]);
+
 

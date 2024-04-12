@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserModel;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StorePostRequest;
 
 class UserController extends Controller
 
@@ -62,7 +64,21 @@ class UserController extends Controller
         return view('user', ['data' => $user]);
     }
 
-   
+    public function store(StorePostRequest $request): RedirectResponse
+    {
+        // The incoming request is valid ...
+
+        // Retrive the validated input data..
+        $validated = $request->safe()->only(['username', 'nama', 'password', 'level_id']);
+        $validated = $request->safe()->except(['username', 'nama', 'password', 'level_id']);
+
+        // Store the post
+
+        return redirect('/user');
+
+    }
+
+
 
 
 
