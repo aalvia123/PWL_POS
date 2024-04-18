@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\UserController;
@@ -61,4 +62,5 @@ Route::delete('/kategori/delete/{id}', [KategoriController::class, 'delete'])->n
 
 Route::resources(['m_user' => POSController::class,]);
 
+Route::get('/', [WelcomeController::class,'index']);
 
