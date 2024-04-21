@@ -4,29 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\LevelModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo; // Tambahkan ini untuk mengimpor namespace BelongsTo
 
 class UserModel extends Model
-
-
 {
     use HasFactory;
 
-    protected $table ='m_user';     //Mendefinisikan nama tabel yang digunakan oleh model ini
-    protected $primaryKey = 'user_id'; // mendefinisikan primary key dari tabel yang digunakan
-
+    protected $table = 'm_user';
+    protected $primaryKey = 'user_id';
+    //protected $fillable = ['level_id', 'username', 'nama', 'password'];
     /**
-     * the atributes that are mass asignable
+     * the attributes that are mass assignable
+     *
      *
      * @var array
-     */
+     *  */
     protected $fillable = ['level_id', 'username', 'nama', 'password' ];
 
-
-
-    public function level(): BelongsTo
+    public function level(): BelongsTo // Ganti BelongsTo dengan huruf besar
     {
-        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id'); // Ganti belongTo dengan huruf kecil
     }
-
 }
