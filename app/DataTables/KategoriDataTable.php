@@ -20,24 +20,30 @@ class KategoriDataTable extends DataTable
      * @param QueryBuilder $query Results from query() method.
      */
     public function dataTable(QueryBuilder $query): EloquentDataTable
-{
-    return (new EloquentDataTable($query))
-        ->addColumn('actions', function($kategori) {
-            return '
-            <a href="' . route('kategori.update', ['id'=> $kategori->kategori_id]) . '" class="btn btn-primary mr-2">
-                <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
-            </a>
-            <form method="POST" action="' . route('kategori.delete', ['id' => $kategori->kategori_id]) . '" onsubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini ?\')">
-                ' . csrf_field() . '
-                ' . method_field('DELETE') . '
-                <button type="submit" class="btn btn-danger mr-2">
-                    <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
-                </button>
-            </form>';
-        })
-        ->rawColumns(['actions'])
-        ->setRowId('id');
-}
+    {
+        return (new EloquentDataTable($query))
+            ->addColumn('kategori_nama', function($kategori) {
+                return $kategori->nama; // Sesuaikan dengan atribut yang sesuai di model
+            })
+            ->addColumn('actions', function($kategori) {
+                return '
+                <a href="' . route('kategori.update', ['id'=> $kategori->kategori_id]) . '" class="btn btn-primary mr-2">
+                    <i class="fa fa-pencil-alt" style="color: white; font-size: 12px;"></i>
+                </a>
+                <form method="POST" action="' . route('kategori.delete', ['id' => $kategori->kategori_id]) . '" onsubmit="return confirm(\'Apakah kamu yakin ingin menghapus data ini ?\')">
+                    ' . csrf_field() . '
+                    ' . method_field('DELETE') . '
+                    <button type="submit" class="btn btn-danger mr-2">
+                        <i class="fa fa-trash" style="color: white; font-size: 12px;"></i>
+                    </button>
+                </form>';
+            })
+            ->rawColumns(['actions'])
+            ->setRowId('id');
+    }
+
+
+
 
 
     /**
