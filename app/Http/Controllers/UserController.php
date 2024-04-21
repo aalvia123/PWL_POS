@@ -105,6 +105,11 @@ class UserController extends Controller
         $users = UserModel::select('user_id', 'username', 'nama', 'level_id')
             ->with('level');
 
+        // filter data user berdasarkan level_id
+        if ($request->level_id) {
+            $users->where('level_id', $request->level_id);
+        }
+
         return DataTables::of($users)
             ->addIndexColumn()
             ->addColumn('aksi', function ($user) {
