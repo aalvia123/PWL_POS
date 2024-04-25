@@ -4,26 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable; // Perbaiki penambahan ini untuk mengimpor kelas Authenticatable
 use App\Models\LevelModel;
-use Illuminate\Database\Eloquent\Relations\BelongsTo; // Tambahkan ini untuk mengimpor namespace BelongsTo
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class UserModel extends Model
+class UserModel extends Authenticatable // Ganti nama kelas ini dari Model menjadi Authenticatable
 {
     use HasFactory;
 
     protected $table = 'm_user';
     protected $primaryKey = 'user_id';
-    //protected $fillable = ['level_id', 'username', 'nama', 'password'];
-    /**
-     * the attributes that are mass assignable
-     *
-     *
-     * @var array
-     *  */
-    protected $fillable = ['level_id', 'username', 'nama', 'password' ];
+    protected $fillable = ['level_id', 'username', 'nama', 'password'];
 
-    public function level(): BelongsTo // Ganti BelongsTo dengan huruf besar
+    public function level(): BelongsTo
     {
-        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id'); // Ganti belongTo dengan huruf kecil
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
     }
 }

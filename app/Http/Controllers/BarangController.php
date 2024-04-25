@@ -136,8 +136,9 @@ public function list(Request $request)
     public function update(Request $request, $id)
     {
         $request->validate([
-            'barang_kode' => 'required|string|min:6|max:10',
             'kategori_id' => 'required|integer',
+            'barang_kode' => 'required|string|min:6|max:10',
+            'kategori_nama'=>'',
             'barang_nama' => 'required|string|max:100',
             'harga_beli' => 'required|integer',
             'harga_jual' => 'required|integer',

@@ -28,7 +28,7 @@
             </tr>
             <tr>
                 <th>Nama Kategori</th>
-                <td>{{ $barang->kategori->nama }}</td>
+                <td>{{ $kategori->kategori_nama }}</td>
             </tr>
             <tr>
                 <th>Harga Beli</th>

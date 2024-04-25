@@ -27,7 +27,7 @@
     <style>
         /* Gaya CSS khusus untuk halaman daftar user */
         .user-list-page {
-            background-color: #FFD1DC; /* Warna pink pastel */
+            background-color: #EAD8C0;
         }
     </style>
 
@@ -46,7 +46,7 @@
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">PWL Starter Code</span>
+                <span class="brand-text font-weight-light">Sistem Informasi POS</span>
             </a>
 
             <!-- Sidebar -->
