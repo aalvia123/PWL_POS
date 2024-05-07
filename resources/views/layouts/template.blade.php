@@ -23,7 +23,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
-    <!-- Tambahkan CSS untuk latar belakang pink pastel -->
+   
     <style>
         /* Gaya CSS khusus untuk halaman daftar user */
         .user-list-page {
