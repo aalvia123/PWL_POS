@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 class LoginController extends Controller
 {
     public function __invoke(Request $request)
@@ -16,6 +17,7 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        
         // if validation fails
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
