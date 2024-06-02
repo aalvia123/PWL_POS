@@ -8,21 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract; // Menambahkan impor untuk AuthenticatableContract
 use Tymon\JWTAuth\Contracts\JWTSubject; // Menghapus backslash (\) pada namespace Tymon\JWTAuth\Contracts\JWTSubject
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
-class UserModel extends Authenticatable implements AuthenticatableContract, JWTSubject // Menambahkan AuthenticatableContract dan JWTSubject
+class UserModel extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
 
-    protected $table = 'm_user';
-    protected $primaryKey = 'user_id';
-    protected $fillable = ['level_id', 'username', 'nama', 'password'];
-
-    public function level(): BelongsTo
-    {
-        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
-    }
-
-    // Implementasi dari JWTSubject
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -31,5 +21,23 @@ class UserModel extends Authenticatable implements AuthenticatableContract, JWTS
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    protected $table = 'm_user';
+    protected $primaryKey = 'user_id';
+
+    protected $fillable = [
+        'username', 'nama', 'password', 'level_id', 'image' //tambahan
+    ];
+
+    public function level()
+    {
+        return $this->belongsTo(LevelModel::class, 'level_id', 'level_id');
+    }
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($image) => url('/storage/posts/' . $image),
+        );
     }
 }
