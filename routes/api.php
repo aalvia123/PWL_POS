@@ -3,10 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\KategoriController;
 use App\Http\Controllers\Api\BarangController;
+use App\Http\Controllers\Api\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +27,11 @@ use App\Http\Controllers\Api\BarangController;
 
 Route::post('/register', 'App\Http\Controllers\Api\RegisterController@register')->name('register');
 
-Route::post('/login', App\Http\Controllers\Api\LoginController::class)->name('login');
+Route::post('/login', LoginController::class)->name('login');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/logout', App\Http\Controllers\Api\LogoutController::class)->name('logout');
+Route::post('/logout', LogoutController::class)->name('logout');
 
 Route::get('levels', [LevelController::class, 'index']);
 Route::post('levels', [LevelController::class, 'store']);
@@ -54,3 +56,8 @@ Route::post('barangs', [BarangController::class, 'store']);
 Route::get('barangs/{barang}', [BarangController::class, 'show']);
 Route::put('barangs/{barang}', [BarangController::class, 'update']);
 Route::delete('barangs/{barang}', [BarangController::class, 'destroy']);
+
+Route::post('/register1', RegisterController::class)->name('register1');
+
+
+//Route::post('register1', [RegisterController::class, 'register1']);
