@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::post('/register', RegisterController::class)->name('register');
+//Route::post('/register', RegisterController::class)->name('register');
 Route::post('/login', LoginController::class)->name('login');
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (Request $request) {
@@ -60,7 +60,7 @@ Route::put('barang/{barang}', [BarangController::class, 'update']);
 Route::delete('barang/{barang}', [BarangController::class, 'destroy']);
 
 //register1
-Route::post('/register1', RegisterController::class)->name('register1');
+//Route::post('/register1', RegisterController::class)->name('register1');
 
 //transaksi
 Route::get('transaksi', [TransaksiController::class, 'index']);
