@@ -12,21 +12,29 @@ class FileUploadController extends Controller
         return view('file-upload');
     }
 
-    public function prosesFileUpload(Request $request)
+    public function fileuploadRename()
+    {
+        return view('file-upload-rename');
+    }
+
+    public function prosesFileUploadRename(Request $request)
     {
         $request->validate([
-        'berkas' => 'required|file|image|max:500', ]);
+            'berkas'=>'required|file|image|max:500',
+        ]);
         $extfile=$request->berkas->getClientOriginalName();
-        $namaFile='web-'.time().".".$extfile;
+        $nama_file=$request->input('namaFile');
+        $nameFile='web-'.time().".".$nama_file.".".$extfile;
+        //$path = $request->berkas->storeAs('public', $nameFile);
 
-        $path = $request->berkas->move('gambar',$namaFile);
+        $path = $request->berkas->move('gambar', $nameFile);
         $path =str_replace("\\","//", $path);
-        echo "Variabel path berisi:$path <br>";
+        echo"Variabel path berisi:$path <br>";
 
-        $pathBaru=asset('gambar/'.$namaFile);
-        echo "proses berhasil di upload, data berada di: $path";
+        $pathBaru=asset('gambar/'.$nameFile);
+        echo "proses upload berhasil, di link:<a href='$pathBaru'>$nama_file.$extfile</a>";
+        echo "Proses upload berhasil, data disimpan pada: $path";
         echo "<br>";
-        echo "Tampilkan link:<a href='$pathBaru'>$pathBaru</a>";
-
+        echo "<img src = '$pathBaru' alt = 'gambar' style = 'max-width: 300px; max-height: 300px;'> ";
     }
 }

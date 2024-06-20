@@ -23,7 +23,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
 
-   
+
     <style>
         /* Gaya CSS khusus untuk halaman daftar user */
         .user-list-page {
@@ -46,7 +46,7 @@
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="brand-link">
                 <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Sistem Informasi POS</span>
+                <span class="brand-text font-weight-light"> ALVIA</span>
             </a>
 
             <!-- Sidebar -->
